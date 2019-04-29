@@ -1,0 +1,20 @@
+@font-face {
+  font-family: 'Poiret One';
+  src:url('~static/font/PoiretOne-Regular.ttf');
+}
+@font-face {
+  font-family: 'Matchbook';
+  src:url('~static/font/Matchbook.ttf');
+}
+@font-face {
+  font-family: 'Night';
+  src: url('~static/font/Night.ttf');
+}
+@font-face {
+  font-family: 'Meng Ai';
+  src: url('~static/font/MengAi.ttf');
+}
+@font-face {
+  font-family: 'Pinecone';
+  src: url('~static/font/pinecone.ttf');
+}

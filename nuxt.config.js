@@ -28,8 +28,9 @@ module.exports = {
   ** Global CSS
   */
   css: [
+    'element-ui/lib/theme-chalk/index.css',
     '~/assets/css/global.css',
-    'element-ui/lib/theme-chalk/index.css'
+    '~/assets/css/font.css'
   ],
 
   /*
@@ -63,5 +64,9 @@ module.exports = {
     transpile: [/^element-ui/],
     extend(config, ctx) {
     }
+  },
+  server:{
+    port:3000,
+    host:'10.18.24.21'
   }
 }

@@ -1,14 +1,62 @@
 <template>
-  <el-container>
+  <el-container class="default">
     <el-header>
       <el-menu :default-active="activeIndex" 
                 active-text-color="#ffd04b" 
                 class="el-menu-demo" 
-                mode="horizontal">
-        <el-menu-item index="1">英灵</el-menu-item>
-        <el-menu-item index="2">编程技术</el-menu-item>
-        <el-menu-item index="3">Study Timeline</el-menu-item>
-        <el-menu-item index="4">do you like music？</el-menu-item>
+                mode="horizontal"
+                :router="true">
+        <el-menu-item
+          v-for="(item,i) in navMenu" 
+          :key="i" 
+          :index="item.index">{{item.label}}</el-menu-item>
+        
+
+        <!--终极缩小下拉菜单-->
+        <el-dropdown trigger="click">
+          <span class="el-dropdown-link">
+            <i class="el-icon-menu"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>编程技术</el-dropdown-item>
+            <el-dropdown-item>时间线</el-dropdown-item>
+            <el-dropdown-item>音乐</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+
+
+        <!--单选组-->
+        <el-radio-group v-model="share" size="mini"  fill="#ffd04b">
+          <el-radio-button label="QQ"></el-radio-button>
+          <el-radio-button label="微博"></el-radio-button>
+          <el-radio-button label="Twitter"></el-radio-button>
+          <el-radio-button label="Github"></el-radio-button>
+        </el-radio-group>
+
+        <!--语言-->
+        <el-select v-model="lang" size="mini">
+          <el-option v-for="item in langList" 
+                    :key="item.index" 
+                    :label="item.label" 
+                    :value="item.value"></el-option>
+        </el-select>
+        
+        <!--搜索栏-->
+        <el-input
+          v-model="searchInfo"
+          placeholder="搜索"
+          prefix-icon="el-icon-search"
+          size="mini"
+          class="search">
+        </el-input>
+
+        <el-popover
+          placement="top"
+          width="160"
+          >
+          <el-input></el-input>
+          <el-button slot="reference" class="el-icon-menu">删除</el-button>
+        </el-popover>
       </el-menu>
     </el-header>
     <el-container>
@@ -61,8 +109,26 @@
     data() {
       return {
         activeIndex: '1',
-        activeIndex2: '1',
-        isCollapse: true
+        share:'QQ',
+        navMenu:[
+          {index:'/',label:'英灵'},
+          {index:'/program',label:'编程技术'},
+          {index:'/timeline',label:'时间线'},
+          {index:'/music',label:'音乐'},
+        ],
+
+        /**语言 */
+        lang:'chinese',
+        langList:[
+          {index:1,label:'中文',value:'chinese'},
+          {index:2,label:'English',value:'english'},
+        ],
+
+        /**搜索信息 */
+        searchInfo:'',
+        shareTag:[
+          {}
+        ]
       };
     },
     methods: {
@@ -80,19 +146,145 @@
 </script>
 
 <style lang="scss">
-  .el-container{
+  $theme_color:#ffd04b;
+
+  .el-container.default{
+    min-width: 361px;
     .el-header{
       .el-menu--horizontal {
+        .el-menu-item{
+          &:first-child{
+            color:$theme_color;
+            font-size: 30px;
+            font-family: 'Night';
+          }
+          &:not(.is-disabled):hover{
+            outline: 0;
+            color: $theme_color;
+          }
+        }
         &>.el-menu-item.is-active{
           border-bottom: 2px solid white !important;
         }
+        @media screen and (max-width:768px){
+          .el-menu-item:not(:first-child){
+            display: none;
+          }
+        }
       }
+
+
+      /*终极缩小*/
+      .el-dropdown{
+        float:right;
+        padding:15px 20px 20px;
+        height:60px;
+        span{
+          font-size:30px;
+          color:$theme_color;
+        }
+        &:focus{
+          outline: 0;
+        }
+        .el-dropdown-link:focus {
+          outline: 0;
+        }
+      }
+      @media screen and (min-width:768px){
+        .el-dropdown{
+          display:none;
+        }
+      }
+
+
+      /*联系方式*/
+      .el-radio-group{
+        float:right;
+        padding:20px;
+        height:60px;
+        .el-radio-button__inner {
+          &:hover{
+            color: $theme_color;
+          }
+        }
+        &:focus{
+          outline:0;
+        }
+      }
+      @media screen and (max-width:768px){
+        .el-radio-group{
+          display:none;
+        }
+      }
+
+      /*选择语言*/
+      .el-select{
+        float:right;
+        padding:20px;
+        height:60px;
+        width:150px;
+        .el-input.is-focus{
+          .el-input__inner {
+            border-color: $theme_color;
+          }
+        }
+        .el-input__inner{
+          &:focus{
+            border-color: $theme_color;
+          }
+        }
+        &:focus{
+          outline:0;
+        }
+      }
+      
+      
+      .el-input.search{
+        float:right;
+        padding:20px;
+        height:60px;
+        width:200px;
+        .el-input__prefix {
+          left: 25px;
+          top: 3px;
+        }
+        .el-input__inner:focus {
+            border-color: $theme_color;
+            outline: 0;
+        }
+      }
+      @media screen and (max-width:768px){
+        .el-input.search{
+          display:none;
+        }
+      }
+
+      
     }
     .el-container{
       .el-aside{
         padding:0 20px;
         width:100px !important;
       }
+      @media screen and (max-width:768px){
+        .el-aside{
+          display:none;
+        }
+      }
+    }
+  }
+
+
+  .el-select-dropdown{
+    .el-select-dropdown__item.selected{
+      color:$theme_color;
+    }
+  }
+
+  .el-dropdown-menu{
+    .el-dropdown-menu__item:not(.is-disabled):hover {
+      background-color: #ecf5ff;
+      color: $theme_color;
     }
   }
 </style>
