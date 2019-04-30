@@ -50,17 +50,10 @@
           class="search">
         </el-input>
 
-        <el-popover
-          placement="top"
-          width="160"
-          >
-          <el-input></el-input>
-          <el-button slot="reference" class="el-icon-menu">删除</el-button>
-        </el-popover>
       </el-menu>
     </el-header>
     <el-container>
-      <el-aside>
+      <el-aside class="left">
         <el-menu class="el-menu-vertical-demo" 
                 :collapse="true" 
                 active-text-color="#ffd04b">
@@ -177,7 +170,7 @@
       /*终极缩小*/
       .el-dropdown{
         float:right;
-        padding:15px 20px 20px;
+        padding:15px 0 20px;
         height:60px;
         span{
           font-size:30px;
@@ -262,7 +255,7 @@
       
     }
     .el-container{
-      .el-aside{
+      .el-aside.left{
         padding:0 20px;
         width:100px !important;
       }
