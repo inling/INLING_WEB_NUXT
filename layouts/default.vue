@@ -11,9 +11,21 @@
           :key="i" 
           :index="item.index">{{item.label}}</el-menu-item>
         
+        <!--终极缩小下拉菜单/联系方式、分享链接-->
+        <el-dropdown trigger="click" class="share">
+          <span class="el-dropdown-link">
+            <i class="el-icon-share"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>QQ</el-dropdown-item>
+            <el-dropdown-item>微博</el-dropdown-item>
+            <el-dropdown-item>Twitter</el-dropdown-item>
+            <el-dropdown-item>Github</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
 
-        <!--终极缩小下拉菜单-->
-        <el-dropdown trigger="click">
+        <!--终极缩小下拉菜单/主菜单-->
+        <el-dropdown trigger="click" class="hidden-sm-and-up">
           <span class="el-dropdown-link">
             <i class="el-icon-menu"></i>
           </span>
@@ -26,7 +38,7 @@
 
 
         <!--单选组-->
-        <el-radio-group v-model="share" size="mini"  fill="#ffd04b">
+        <el-radio-group v-model="share" size="mini"  fill="#ffd04b" class="hidden-sm-and-down">
           <el-radio-button label="QQ"></el-radio-button>
           <el-radio-button label="微博"></el-radio-button>
           <el-radio-button label="Twitter"></el-radio-button>
@@ -90,7 +102,6 @@
         </el-menu>
       </el-aside>
       <el-main>
-        bvjb
         <nuxt />
       </el-main>
     </el-container>
@@ -182,10 +193,10 @@
         .el-dropdown-link:focus {
           outline: 0;
         }
-      }
-      @media screen and (min-width:768px){
-        .el-dropdown{
-          display:none;
+        &.share{
+          @media screen and (min-width:991px){
+            display: none;
+          }
         }
       }
 
@@ -202,11 +213,6 @@
         }
         &:focus{
           outline:0;
-        }
-      }
-      @media screen and (max-width:768px){
-        .el-radio-group{
-          display:none;
         }
       }
 
@@ -236,7 +242,7 @@
         float:right;
         padding:20px;
         height:60px;
-        width:200px;
+        width:160px;
         .el-input__prefix {
           left: 25px;
           top: 3px;
@@ -245,14 +251,10 @@
             border-color: $theme_color;
             outline: 0;
         }
-      }
-      @media screen and (max-width:768px){
-        .el-input.search{
-          display:none;
+        @media screen and (max-width:768px){
+            display:none;
         }
       }
-
-      
     }
     .el-container{
       .el-aside.left{

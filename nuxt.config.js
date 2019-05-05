@@ -29,6 +29,7 @@ module.exports = {
   */
   css: [
     'element-ui/lib/theme-chalk/index.css',
+    'element-ui/lib/theme-chalk/display.css',
     '~/assets/css/global.css',
     '~/assets/css/font.css'
   ],
@@ -67,6 +68,6 @@ module.exports = {
   },
   server:{
     port:3000,
-    host:'10.18.24.10'
+    host:'10.18.24.20'
   }
 }
