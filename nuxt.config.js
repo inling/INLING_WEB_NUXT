@@ -68,6 +68,6 @@ module.exports = {
   },
   server:{
     port:3000,
-    host:'10.18.24.20'
+    host:'10.18.24.14'
   }
 }

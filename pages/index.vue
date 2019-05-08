@@ -2,7 +2,14 @@
     <div id="index">
       <el-row>
         <el-col :sm="24" :md="18" class="cards">
-            asd
+          <el-row class="program_m">
+            <el-col :span="24">
+              <program-frame></program-frame>
+            </el-col>
+          </el-row>
+          <el-row class="music_m">
+            
+          </el-row>
         </el-col>
         <el-col :md="6" class="hidden-md-and-down miscellaneous">
           <el-row>
@@ -36,7 +43,17 @@
           <el-row>
             <el-card class="box-card" style="margin:10px 0;">
               <div slot="header" class="clearfix">
-                <span>相关文章</span>
+                <span>相关内容</span>
+              </div>
+              <div v-for="o in 4" :key="o" class="text item">
+                {{'列表内容 ' + o }}
+              </div>
+            </el-card>
+          </el-row>
+          <el-row>
+            <el-card class="box-card" style="margin:10px 0;">
+              <div slot="header" class="clearfix">
+                <span>友链</span>
               </div>
               <div v-for="o in 4" :key="o" class="text item">
                 {{'列表内容 ' + o }}
@@ -49,6 +66,7 @@
 </template>
 
 <script>
+import programFrame from '@/components/index/program_frame.vue'
 export default {
   data(){
     return {
@@ -73,14 +91,19 @@ export default {
         {hid:'description',name:'description',content:''}
       ]
     }
+  },
+  components:{
+    programFrame
   }
 }
 </script>
 
 <style lang="scss">
+$theme_color:#ffd04b;
+
 #index{
   .cards{
-    padding: 20px;
+    padding: 0 20px 20px 0;
   }
   .miscellaneous{
     padding: 0 20px 0 20px;
@@ -94,6 +117,9 @@ export default {
         margin:0 5px 10px 0px;
         cursor: pointer;
       }
+    }
+    .box-card{
+      font-size: 16px;
     }
   }
 }
