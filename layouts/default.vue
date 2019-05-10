@@ -6,6 +6,10 @@
                 class="el-menu-demo" 
                 mode="horizontal"
                 :router="true">
+        <el-menu-item index="/">
+          <i class="icon icon_t theme_icon"></i>
+          英灵
+        </el-menu-item>
         <el-menu-item
           v-for="(item,i) in navMenu" 
           :key="i" 
@@ -115,7 +119,6 @@
         activeIndex: '1',
         share:'QQ',
         navMenu:[
-          {index:'/',label:'英灵'},
           {index:'/program',label:'编程技术'},
           {index:'/timeline',label:'时间线'},
           {index:'/music',label:'音乐'},
@@ -153,10 +156,14 @@
   $theme_color:#ffd04b;
 
   .el-container.default{
-    min-width: 361px;
+    min-width: 425px;
     .el-header{
       .el-menu--horizontal {
         .el-menu-item{
+          .theme_icon{
+            background-position: -138px -1803px;
+            margin-bottom:10px;
+          }
           &:first-child{
             color:$theme_color;
             font-size: 30px;
@@ -242,7 +249,7 @@
         float:right;
         padding:20px;
         height:60px;
-        width:160px;
+        width:150px;
         .el-input__prefix {
           left: 25px;
           top: 3px;
