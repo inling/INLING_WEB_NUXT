@@ -4,7 +4,7 @@
         <el-col :sm="24" :md="18" class="cards">
           <el-row class="program_m">
             <el-col :span="24">
-              <program-frame></program-frame>
+              <program-frame :banners="banners"></program-frame>
             </el-col>
           </el-row>
           <el-row class="music_m">
@@ -66,8 +66,14 @@
 </template>
 
 <script>
-import programFrame from '@/components/index/program_frame.vue'
+import programFrame from '@/components/index/program_frame.vue';
+import axios from 'axios';
 export default {
+  async asyncData({isDev, route, store, env, params, query, req, res, redirect, error}) {
+    let {data}= await axios.get('http://musicapi.leanapp.cn/banner?type=2');
+    console.log(data)
+    return {banners:data.banners}
+  },
   data(){
     return {
        articleOptions: [{
@@ -85,7 +91,7 @@ export default {
   },
   head(){
     return {
-      title:'英灵 | 技术宅，搬砖改变世界',
+      title:'英灵 | 技术宅，犹豫就会败北',
       meta:[
         {hid:'keywords',name:'keywords',content:'英灵'},
         {hid:'description',name:'description',content:''}
@@ -104,6 +110,9 @@ $theme_color:#ffd04b;
 #index{
   .cards{
     padding: 0 20px 20px 0;
+    @media screen and (max-width:768px){
+      padding: 0;
+    }
   }
   .miscellaneous{
     padding: 0 20px 0 20px;

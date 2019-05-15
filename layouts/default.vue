@@ -156,8 +156,11 @@
   $theme_color:#ffd04b;
 
   .el-container.default{
-    min-width: 425px;
+    
     .el-header{
+      @media screen and (max-width:768px){
+        padding:0;
+      }
       .el-menu--horizontal {
         .el-menu-item{
           .theme_icon{
@@ -168,6 +171,7 @@
             color:$theme_color;
             font-size: 30px;
             font-family: 'Night';
+            padding:0;
           }
           &:not(.is-disabled):hover{
             outline: 0;
@@ -228,7 +232,7 @@
         float:right;
         padding:20px;
         height:60px;
-        width:150px;
+        width:130px;
         .el-input.is-focus{
           .el-input__inner {
             border-color: $theme_color;
@@ -242,8 +246,10 @@
         &:focus{
           outline:0;
         }
+        @media screen and (max-width: 319px){
+            display:none;
+        }  
       }
-      
       
       .el-input.search{
         float:right;
