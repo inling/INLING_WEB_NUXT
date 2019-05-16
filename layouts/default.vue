@@ -159,7 +159,7 @@
     
     .el-header{
       @media screen and (max-width:768px){
-        padding:0;
+        padding:0 5px 0 5px;
       }
       .el-menu--horizontal {
         .el-menu-item{

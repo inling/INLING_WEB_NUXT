@@ -70,7 +70,7 @@ import programFrame from '@/components/index/program_frame.vue';
 import axios from 'axios';
 export default {
   async asyncData({isDev, route, store, env, params, query, req, res, redirect, error}) {
-    let {data}= await axios.get('http://musicapi.leanapp.cn/banner?type=2');
+    let {data}= await axios.get('http://59.110.242.246:97/banner?type=0');
     console.log(data)
     return {banners:data.banners}
   },
